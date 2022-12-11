@@ -26,7 +26,7 @@ public class DepartmentController {
 	@PostMapping(path = "/adddepartment")
 	@CrossOrigin
 	@ResponseBody
-	public ResponseEntity<DepartmentDetail> adddepartment(@RequestBody DepartmentDetail departmentdetail) {
+	public ResponseEntity<String> adddepartment(@RequestBody DepartmentDetail departmentdetail) {
 		return departmentservice.adddepartment(departmentdetail);
 	}
 

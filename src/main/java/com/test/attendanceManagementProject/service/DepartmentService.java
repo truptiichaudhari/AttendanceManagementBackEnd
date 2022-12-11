@@ -11,31 +11,30 @@ import org.springframework.stereotype.Service;
 import com.test.attendanceManagementProject.entity.DepartmentDetail;
 import com.test.attendanceManagementProject.repository.DepartmentRepository;
 
-
-
 	@Service("departmentservice")
 	public class DepartmentService {
 		@Autowired
 		DepartmentRepository departmentrepository;
 			
-		public ResponseEntity<DepartmentDetail> adddepartment(DepartmentDetail departmentdetail) {
-			//System.out.println("HELLO"+departmentdetail.getDepartmentId());
-			DepartmentDetail deptdetail = departmentrepository.findByDepartmentName(departmentdetail.getDepartmentName());
-			if(deptdetail==null) {
-			
-				departmentrepository.save(departmentdetail);
-			return ResponseEntity.status(HttpStatus.CREATED).body(deptdetail);
+		public ResponseEntity<String> adddepartment(DepartmentDetail departmentdetail) {
+			try {
+				DepartmentDetail deptdetail = departmentrepository.findByDepartmentName(departmentdetail.getDepartmentName());
+				if(deptdetail==null) {
+					departmentrepository.save(departmentdetail);
+					return ResponseEntity.status(HttpStatus.CREATED).body("Department created successfully");
+				}
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Department is already existed");
+			} catch (Exception ex) {				
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("exception occured while creating department..."+ ex.getMessage());
 			}
-			return null;
 		}
-			public List<DepartmentDetail> findalldepartment() {
-				 List<DepartmentDetail> departmentList = (List<DepartmentDetail>) departmentrepository.findAll();
-
-			        if (departmentList != null) {
-			           return departmentList;
-			        }
-
-			       return null;
+		
+		public List<DepartmentDetail> findalldepartment() {
+			List<DepartmentDetail> departmentList = (List<DepartmentDetail>) departmentrepository.findAll();
+	        if (departmentList != null) {
+	           return departmentList;
+	        }
+		    return null;
 		}
 	}
 
