@@ -42,8 +42,8 @@ public class AttendanceService {
 	}
 	
 	public ResponseEntity<String> updateAttendence(AttendanceDetail attendence) {	
-		try {	
-			AttendanceDetail isAttendence = this.attendancerepository.findByUserAndDate(attendence.getUser(), attendence.getDate());
+		try {
+			AttendanceDetail isAttendence = this.attendancerepository.findById(attendence.getId());
 			if(isAttendence == null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Attendence is not valid to update." );
 			}

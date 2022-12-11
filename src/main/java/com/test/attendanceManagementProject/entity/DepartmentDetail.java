@@ -16,7 +16,7 @@ public class DepartmentDetail {
 	String departmentName;
 
 	@Column(name = "noOfEmployee")
-	String noOfEmployee;
+	int noOfEmployee;
 
 	
 // ---------------------------	
@@ -30,15 +30,16 @@ public class DepartmentDetail {
 		this.departmentName = departmentName;
 	}
 
-	public String getnoOfEmployee() {
+
+	public int getNoOfEmployee() {
 		return noOfEmployee;
 	}
 
-	public void setnoOfEmployee(String noOfEmployee) {
+	public void setNoOfEmployee(int noOfEmployee) {
 		this.noOfEmployee = noOfEmployee;
 	}
 
-	public DepartmentDetail(int departmentId, String departmentName, String noOfEmployee, List<UserDetail> user) {
+	public DepartmentDetail(int departmentId, String departmentName, int noOfEmployee, List<UserDetail> user) {
 		super();
 		this.departmentName = departmentName;
 		this.noOfEmployee = noOfEmployee;

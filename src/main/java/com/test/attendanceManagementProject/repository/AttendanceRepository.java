@@ -35,6 +35,9 @@ public interface AttendanceRepository extends CrudRepository<AttendanceDetail, I
 //	@Query(value="SELECT * FROM attendancedetail WHERE username = :username AND date=:date ORDER BY date " , nativeQuery = true)
 //	AttendanceDetail findByUsernameAndDate(String username, Date date);
 	
+	
+	AttendanceDetail findById(int id);
+	
 	AttendanceDetail findByDate(Date date);
 
 	AttendanceDetail findByIdAndDate(int id, Date date);
